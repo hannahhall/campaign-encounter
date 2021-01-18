@@ -16,4 +16,4 @@ class EncounterPlayer(models.Model):
     """
     player = models.ForeignKey('Player', on_delete=CASCADE)
     encounter = models.ForeignKey('Encounter', on_delete=CASCADE)
-    initiative = models.IntegerField()
+    initiative = models.IntegerField(null=True)

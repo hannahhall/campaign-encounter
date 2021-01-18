@@ -17,4 +17,4 @@ class EncounterMonster(models.Model):
     """
     monster = models.ForeignKey('Monster', on_delete=CASCADE)
     encounter = models.ForeignKey('Encounter', on_delete=CASCADE)
-    initiative = models.IntegerField()
+    initiative = models.IntegerField(null=True)

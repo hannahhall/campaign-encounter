@@ -1,7 +1,10 @@
 """
 Encounter Model Class
 """
+from itertools import chain
 from django.db import models
+from .encounter_monster import EncounterMonster
+from .encounter_player import EncounterPlayer
 
 
 class Encounter(models.Model):
@@ -20,3 +23,19 @@ class Encounter(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     players = models.ManyToManyField('Player', through='EncounterPlayer')
+    turn = models.IntegerField(default=0)
+
+    @property
+    def order(self):
+        """Order Property for combining players and monsters
+
+        Returns:
+            list: monsters and players sorted by initiative
+        """
+        encounter_monsters = EncounterMonster.objects.filter(encounter__id=self.id)
+        encounter_players = EncounterPlayer.objects.filter(encounter__id=self.id)
+        return sorted(
+            chain(encounter_monsters, encounter_players),
+            key=lambda member: member.initiative,
+            reverse=True
+        )
