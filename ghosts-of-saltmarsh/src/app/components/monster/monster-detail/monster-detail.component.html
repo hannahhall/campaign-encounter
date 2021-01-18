@@ -1,1 +1,111 @@
-<p>monster-detail works!</p>
+<section class="block card" *ngIf="monster$ | async as monster">
+    <div class="block-overview">
+        <h2 class="block-heading title is-1">{{monster.name}}</h2>
+        <p class="block-subtitle subtitle is-6">{{monster.size}} {{monster.type}}, {{monster.alignment}}</p>
+
+    </div>
+    <div class="block-stats">
+        <span><b>Armor Class</b> {{monster.armorClass}}</span>
+        <span><b>Hit Points</b> {{monster.hitPoints}} ({{monster.hitDice}})</span>
+        <span><b>Speed </b>
+            <ng-container *ngFor="let item of monster.speed | keyvalue">{{item.key | titlecase}}-{{item.value}} </ng-container>
+        </span>
+        <span><b>Challenge</b> {{monster.challengeRating}}</span>
+    </div>
+    <div class="block-scores">
+        <div class="block-score">
+            <span class="block-score-title">Str</span>
+            <span>{{monster.strength}}</span>
+        </div>
+        <div class="block-score">
+            <span class="block-score-title">Dex</span>
+            <span>{{monster.dexterity}}</span>
+        </div>
+        <div class="block-score">
+            <span class="block-score-title">Con</span>
+            <span>{{monster.constitution}}</span>
+        </div>
+        <div class="block-score">
+            <span class="block-score-title">Int</span>
+            <span>{{monster.intelligence}}</span>
+        </div>
+        <div class="block-score">
+            <span class="block-score-title">Wis</span>
+            <span>{{monster.wisdom}}</span>
+        </div>
+        <div class="block-score">
+            <span class="block-score-title">Cha</span>
+            <span>{{monster.charisma}}</span>
+        </div>
+    </div>
+    <div class="block-abilities">
+        <p class="block-ability" *ngIf="monster.proficiencies">
+            <b class="block-ability-title">Saving Throws</b>
+            <ng-container *ngFor="let prof of monster.proficiencies" >
+                 <ng-container *ngIf="prof.proficiency.name.includes('Saving Throw')">
+                     {{prof.proficiency.name.replace('Saving Throw:', '') }} +{{prof.value}}
+                 </ng-container>
+            </ng-container>
+            <!-- TODO: for loop -->
+        </p>
+        <p class="block-ability" *ngIf="monster.proficiencies">
+            <b class="block-ability-title">Skills</b>
+            <ng-container *ngFor="let prof of monster.proficiencies" >
+                 <ng-container *ngIf="prof.proficiency.name.includes('Skill')">
+                     {{prof.proficiency.name.replace('Skill:', '') }} +{{prof.value}}
+                 </ng-container>
+            </ng-container>
+            <!-- TODO: for loop -->
+        </p>
+        <p class="block-ability" *ngIf="monster.senses">
+            <b class="block-ability-title">Senses</b>
+            <ng-container *ngFor="let item of monster.senses | keyvalue"> {{item.key.replace('_', ' ') | titlecase}}-{{item.value}} </ng-container>
+        </p>
+        <p class="block-ability" *ngIf="monster.languages">
+            <b class="block-ability-title">Languages</b> {{monster.languages}}
+        </p>
+        <p class="block-ability" *ngIf="monster.damageVulnerabilities && monster.damageVulnerabilities.length">
+            <b class="block-ability-title">Damage Vulnerabilities </b>
+            <ng-container *ngFor="let v of monster.damageVulnerabilities"> {{v | titlecase}}</ng-container>
+        </p>
+        <p class="block-ability" *ngIf="monster.damageResistances && monster.damageResistances.length">
+            <b class="block-ability-title">Damage Resistances </b>
+            <ng-container *ngFor="let v of monster.damageResistances">{{v | titlecase}}</ng-container>
+        </p>
+        <p class="block-ability" *ngIf="monster.damageImmunities && monster.damageImmunities.length">
+            <b class="block-ability-title">Damage Immunities </b>
+            <ng-container *ngFor="let v of monster.damageImmunities">{{v | titlecase}}</ng-container>
+        </p>
+        <p class="block-ability" *ngIf="monster.conditionImmunities && monster.conditionImmunities.length">
+            <b class="block-ability-title">Condition Immunities </b>
+            <ng-container *ngFor="let v of monster.conditionImmunities">{{v.name}} </ng-container>
+        </p>
+    </div>
+    <div class="block-features content" *ngIf="monster.specialAbilities && monster.specialAbilities.length">
+        <p class="block-feature" *ngFor="let ability of monster.specialAbilities">
+            <b class="block-feature-name">{{ability.name}} </b> <span [innerHTML]="convertBreaks(ability.desc)"></span>
+        </p>
+    </div>
+    <div class="block-actions-grid">
+        <div class="block-actions content" *ngIf="monster.actions">
+            <h3 class="title is-5">Actions</h3>
+            <p class="block-action" *ngFor="let action of monster.actions">
+                <b class="block-action-name">{{action.name}} </b>: 
+                <span class="block-action-description">{{action.desc}}</span>
+            </p>
+        </div>
+        <div class="block-actions content" *ngIf="monster.legendaryActions">
+            <h3 class="title is-5">Legendary Actions</h3>
+            <p class="block-action" *ngFor="let action of monster.legendaryActions">
+                <b class="block-action-name">{{action.name}} </b>
+                <span class="block-action-description">{{action.desc}}</span>
+            </p>
+        </div>
+        <div class="block-reactions content" *ngIf="monster.reactions && monster.reactions.length">
+            <h3 class="title is-5">Reactions</h3>
+            <p class="block-reaction" *ngFor="let reaction of monster.reactions">
+                <b class="block-reaction-name">{{reaction.name}}</b> {{reaction.desc}}
+            </p>
+        </div>
+    </div>
+</section>
