@@ -1,0 +1,23 @@
+@import './colors';
+
+$text: $secondary;
+$text-light: lighten($secondary, 1%);
+
+$family-secondary: Tangerine, cursive;
+$family-sans-serif: OpenSans, sans-serif;
+$hero-body-padding: .5rem .5rem;
+
+$menu-width: 300px;
+$menu-list-link-padding: 10px 5px;
+
+$tabs-border-bottom-color: $green;
+$tabs-link-color: $green;
+$tabs-link-active-color: $secondary;
+$tabs-link-active-border-bottom-color: $secondary;
+
+// Modal overrides
+$modal-z: 9999;
+
+// Cards
+$card-background-color: rgba($tan, .2);;
+$card-header-shadow: none;

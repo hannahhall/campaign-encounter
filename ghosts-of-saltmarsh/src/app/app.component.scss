@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    width: 100vw;
+    background: url('/assets/ricepaper_v3_@2X.png') top left repeat;
+}
+
+@media (min-width: 769px) {
+    router-outlet {
+        margin-left: 300px;
+    }
+}

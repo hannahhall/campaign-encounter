@@ -1,0 +1,19 @@
+$tan: #f8d0b0;
+$light-tan: lighten($tan, 5%);
+$light-teal: #78b0a0;
+$green: #587850;
+$dark-green: darken($green, 25%);
+$primary: $light-teal;
+$secondary: $dark-green;
+$tertiary: $light-tan;
+$red: #822000;
+
+
+// Menu Colors
+$menu-label-color: $light-tan;
+$menu-item-color: $secondary;
+$menu-item-hover-color: $secondary;
+$menu-item-hover-background-color: $tertiary;
+$menu-item-active-background-color: $tertiary;
+$menu-item-active-color: $secondary;
+$border: $tertiary;

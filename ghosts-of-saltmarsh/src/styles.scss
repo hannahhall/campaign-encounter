@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Tangerine:400,700&display=swap');
+
+@import './sass/colors';
+@import './sass/vars';
+
+@import '@fortawesome/fontawesome-free/css/all.css';
+@import 'bulma/bulma.sass';
+
+html, body, app-root {
+    min-height: 100vh;
+}

@@ -1,0 +1,21 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </tfoot>
+    <tbody>
+        <ng-container *ngFor="let monster of monsters$ | async">
+
+            <tr>
+              <th><a (click)="goToMonster(monster.index)">{{monster.name}}</a></th>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+        

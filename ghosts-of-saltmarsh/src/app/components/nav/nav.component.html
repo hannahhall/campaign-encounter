@@ -1,0 +1,23 @@
+<aside class="menu">
+    <div class="close-menu">
+        <i (click)="closeMenu()" class="fas fa-dungeon"></i>
+      </div>
+    <figure class="image is-128x128">
+        <img src="/assets/octo-logo.png">
+    </figure>
+    <p class="menu-label">
+        Encyclopedia
+    </p>
+    <ul class="menu-list">
+        <a class="menu-item" routerLink="/blogs" routerLinkActive="is-active">Blogs</a>
+
+    </ul>
+    <ng-container *ngIf="true">
+        <p class="menu-label">
+            Dungeon Master
+        </p>        
+        <ul class="menu-list">
+            <a class="menu-item" routerLink="/monsters" routerLinkActive="is-active">Monsters</a>
+        </ul>     
+    </ng-container>
+</aside>
