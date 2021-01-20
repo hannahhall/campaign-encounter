@@ -1,0 +1,17 @@
+<div class="card init-card">
+    <header class="card-header">
+        <h3 class="card-header-title">
+            {{member.name}}
+        </h3>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <div class="field" *ngIf="!member.initiative">
+            <label class="label">Roll:</label>
+            <div class="control">
+              <input class="input" type="text" [(ngModel)]="member.initiative">
+            </div>
+          </div>
+      </div>
+    </div>
+</div>

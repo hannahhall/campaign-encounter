@@ -1,0 +1,26 @@
+<div class="container is-fluid">
+    <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+            <input class="input" type="text">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+          <textarea class="textarea" ></textarea>
+        </div>
+      </div>
+    <h3>Add to the Encounter</h3>
+    <div class="tile is-ancestor">
+        <div class="tile is-parent is-12">
+            <app-form-card class="tile is-child is-4" [players]="players" [type]="'player'" (selectPlayer)="selectPlayer($event)"></app-form-card>
+            <app-form-card class="tile is-child is-4" [monsters]="monsters" [type]="'monster'" (selectMonster)="selectMonster($event)" (addToEncounter)="addToEncounter()"></app-form-card>
+            <app-form-card class="tile is-child is-4" [monsters]="monsters" [type]="'monster'" (selectMonster)="selectMonster($event)" *ngFor="let _ of selectedMonsters" (addToEncounter)="addToEncounter()"></app-form-card>
+        </div>
+    </div>
+    <div class="tile is-parent is-12" *ngIf="selectedMonster.name">
+        <app-monster-detail></app-monster-detail>
+    </div>
+
+</div>

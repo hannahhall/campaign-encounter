@@ -1,0 +1,19 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th> <a routerLink="/create-encounter">Create Encounter</a></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+        <ng-container *ngFor="let encounter of encounters$ | async">
+            <tr>
+              <th><a [routerLink]="['/encounters', encounter.id]">{{encounter.name}}</a></th>
+              <th>{{encounter.description}}</th>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+        

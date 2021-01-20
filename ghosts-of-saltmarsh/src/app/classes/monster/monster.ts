@@ -2,6 +2,8 @@ export class Monster {
     [x: string]: any;
     index: string;
     name: string;
+    senses: {key:string}
+    speed: {key:string}
     
     constructor(props: any) {
         this.index = props.index;

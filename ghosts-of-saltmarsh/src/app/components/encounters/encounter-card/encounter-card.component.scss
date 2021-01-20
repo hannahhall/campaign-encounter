@@ -1,0 +1,11 @@
+@import '../../../../sass/colors';
+
+.card {
+    width: 300px;
+    height: 350px;
+    border: 1px solid $green;
+
+    &-header {
+        border-bottom: 1px solid $green;
+    }
+}

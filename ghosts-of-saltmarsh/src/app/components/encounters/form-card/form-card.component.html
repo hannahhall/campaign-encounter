@@ -1,0 +1,31 @@
+<div class="card init-card">
+    <header class="card-header">
+        <h3 class="card-header-title">
+            Choose a {{type}}
+        </h3>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <div class="field" *ngIf="type === 'monster'">
+            <label class="label">Monster:</label>
+            <div class="control">
+                <input list="monsters" name="monster" (change)="selectMonster.emit($event)">
+                <datalist id="monsters">
+                    <option *ngFor="let monster of monsters">{{monster.name}} </option>
+                </datalist>
+            </div>
+          </div>
+      
+      <div class="field" *ngIf="type === 'player'">
+        <label for="players" class="label">Players:</label>
+        <label class="checkbox" *ngFor="let player of players">
+            <input type="checkbox" [value]="player.name" (change)="selectPlayer.emit($event)">
+           {{player.name}}
+          </label>
+      </div>
+    </div>
+    </div>
+    <footer class="card-footer">
+        <button class="card-footer-item" (click)="addToEncounter.emit()">Add to Encounter</button>
+    </footer>
+</div>

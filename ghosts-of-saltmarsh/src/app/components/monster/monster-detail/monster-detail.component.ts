@@ -1,6 +1,7 @@
 import { MonsterService } from './../../../services/monster/monster.service';
 import { Component, OnInit } from '@angular/core';
 import { Monster } from 'src/app/classes/monster/monster';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-monster-detail',
@@ -8,7 +9,7 @@ import { Monster } from 'src/app/classes/monster/monster';
   styleUrls: ['./monster-detail.component.scss']
 })
 export class MonsterDetailComponent implements OnInit {
-  monster$: any;
+  monster$ = new Observable<Monster>();
 
   constructor(private monsterService: MonsterService) { }
 
