@@ -56,4 +56,4 @@ class EncounterDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Encounter
-        fields = ['id', 'round', 'name', 'description', 'order']
+        fields = ['id', 'round', 'name', 'description', 'order', 'turn']
