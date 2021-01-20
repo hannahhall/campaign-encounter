@@ -84,3 +84,31 @@ class EncounterView(viewsets.ViewSet):
         encounter.save()
         serializer = EncounterDetailSerializer(encounter)
         return Response(serializer.data)
+
+    @action(detail=True, methods=['put'])
+    def update_hit_points(self, request, pk):
+        amount = request.data.get('amount')
+        encounter_monster = EncounterMonster.objects.get(pk=request.data.get('memberId'))
+        encounter_monster.current_hp += amount
+        encounter_monster.save()
+
+        encounter = Encounter.objects.get(pk=pk)
+        serializer = EncounterDetailSerializer(encounter)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['put'])
+    def update_turn(self, request, pk):
+        encounter = Encounter.objects.get(pk=pk)
+        members_len = len(encounter.order)
+
+        if encounter.turn + 1 > members_len:
+            encounter.round += 1
+            encounter.turn = 0
+        else:
+            encounter.turn += 1
+        
+        encounter.save()
+
+        serializer = EncounterDetailSerializer(encounter)
+        return Response(serializer.data)
+    

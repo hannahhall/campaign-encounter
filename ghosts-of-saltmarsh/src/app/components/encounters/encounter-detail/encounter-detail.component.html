@@ -11,7 +11,14 @@
     <div class="container is-fluid">
         <div class="tile is-ancestor is-12">
             <div class="tile is-parent">
-                <app-encounter-card class="tile is-child is-3" *ngFor="let member of encounter.order" [member]="member" [started]="encounter.round > 0"></app-encounter-card>
+                <app-encounter-card 
+                    class="tile is-child is-3"
+                    *ngFor="let member of encounter.order; index as i"
+                    [member]="member"
+                    [started]="encounter.round > 0"
+                    [isTurn]="encounter.round && i === encounter.turn"
+                    (updateHitPoints)="updateHitPoints($event, encounter.id)"
+                ></app-encounter-card>
             </div>
         </div>
     </div>

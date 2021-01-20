@@ -26,4 +26,8 @@ export class EncounterDetailComponent implements OnInit {
     this.encounterService.saveInitiative(encounter.order, encounter.id)
   }
 
+  updateHitPoints(event: any, id: number) {
+    this.encounterService.updateHitPoints(id, event)
+  }
+
 }

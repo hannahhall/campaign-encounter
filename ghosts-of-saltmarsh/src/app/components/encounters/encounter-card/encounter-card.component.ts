@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-encounter-card',
@@ -8,6 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class EncounterCardComponent implements OnInit {
   @Input() member: any;
   @Input() started: boolean = false;
+  @Input() isTurn: boolean = false;
+
+  @Output() updateHitPoints = new EventEmitter()
+
+  changeHp:number = 0;
+
 
   constructor() { }
 

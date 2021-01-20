@@ -55,10 +55,15 @@ export class EncounterService {
     )
   }
 
-  saveInitiative(order: any, encounterId) {
-    this.http.post(`gos/api/encounters/${encounterId}/save_initiative/`, { order }).subscribe((res: Encounter) => {
-      console.log(res)
-      this._encounter.next(res)
+  saveInitiative(order: any, encounterId: number) {
+    this.http.put(`gos/api/encounters/${encounterId}/save_initiative/`, { order }).subscribe((res) => {
+      this._encounter.next(res as Encounter);
+    })
+  }
+
+  updateHitPoints(encounterId: number, update: any) {
+    this.http.put(`gos/api/encounters/${encounterId}/update_hit_points/`, update).subscribe((res) => {
+      this._encounter.next(res as Encounter);
     })
   }
 }

@@ -1,18 +1,34 @@
 <div class="card init-card"> 
   <header class="card-header">
       <h3 class="card-header-title">
-          {{member.member.name}}
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fas fa-dungeon" *ngIf="isTurn"></i>
+          </span>
+          <span>{{member.member.name}}</span>
+        </span>
       </h3>
   </header>
   <div class="card-content">
     <div class="content">
       <div class="field" *ngIf="!started">
-          <label class="label">Roll Initiative:</label>
-          <div class="control">
-            <input class="input" type="number" [(ngModel)]="member.initiative">
-          </div>
+        <label class="label">Roll Initiative:</label>
+        <div class="control">
+          <input class="input" type="number" [(ngModel)]="member.initiative">
         </div>
+      </div>
+      <div class="field" *ngIf="started && member.current_hp">
+        <label class="label">Current Hit Points: {{member.current_hp}}</label>
+
+        <div class="control">
+          Update Hit Points
+          <input class="input" type="number" [(ngModel)]="changeHp">
+        </div>
+      </div>
     </div>
   </div>
+  <footer class="card-footer" *ngIf="started && member.current_hp">
+    <button class="card-footer-item" (click)="updateHitPoints.emit({memberId: member.id, amount: changeHp})">Update Hit Points</button>
+</footer>
 </div>
 
