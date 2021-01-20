@@ -1,8 +1,8 @@
+import { Router } from '@angular/router';
 import { EncounterService } from './../../../services/encounter/encounter.service';
 import { MonsterService } from './../../../services/monster/monster.service';
 import { Component, OnInit } from '@angular/core';
 import { Monster } from 'src/app/classes/monster/monster';
-import { Observable } from 'rxjs';
 import { PlayerService } from 'src/app/services/player/player.service';
 
 @Component({
@@ -22,7 +22,8 @@ export class EncounterFormComponent implements OnInit {
   constructor(
     private monsterService: MonsterService,
     private playerService: PlayerService,
-    private encounterService: EncounterService
+    private encounterService: EncounterService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +60,7 @@ export class EncounterFormComponent implements OnInit {
       monsters: this.selectedMonsters
     }
     this.encounterService.saveEncounter(encounter)
+    this.router.navigate(['encounters'])
   }
 
 }

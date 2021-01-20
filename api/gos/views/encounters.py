@@ -38,6 +38,11 @@ class EncounterView(viewsets.ViewSet):
         return Response(serializer.data)
 
     def create(self, request):
+        """Create Encounter with players and monsters
+
+        Returns:
+            Response: json serialized Encounter
+        """
         encounter = Encounter()
         encounter.name = self.request.data.get('name')
         encounter.description = self.request.data.get('description')
@@ -58,7 +63,7 @@ class EncounterView(viewsets.ViewSet):
             encounter.monsters.add(monster[0])
         return Response({}, status=status.HTTP_201_CREATED)
 
-    @action(detail=True, methods=['post'])
+    @action(detail=True, methods=['put'])
     def save_initiative(self, request, pk=None):
         """Save the monster and player initiative
         Start the encounter by upping the round to 1

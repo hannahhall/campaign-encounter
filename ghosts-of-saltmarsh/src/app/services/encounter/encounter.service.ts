@@ -50,7 +50,7 @@ export class EncounterService {
   saveEncounter(encounter: any) {
     this.http.post('gos/api/encounters/', encounter).subscribe(
       (res) => {
-        console.log(res)
+        this.loadInitialData()
       }
     )
   }
