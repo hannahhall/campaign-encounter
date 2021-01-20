@@ -13,6 +13,7 @@ import { EncounterCardComponent } from './components/encounters/encounter-card/e
 import { FormsModule } from '@angular/forms';
 import { EncounterFormComponent } from './components/encounters/encounter-form/encounter-form.component';
 import { FormCardComponent } from './components/encounters/form-card/form-card.component';
+import { HeroComponent } from './components/hero/hero.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormCardComponent } from './components/encounters/form-card/form-card.c
     EncounterCardComponent,
     EncounterFormComponent,
     FormCardComponent,
+    HeroComponent,
   ],
   imports: [
     BrowserModule,

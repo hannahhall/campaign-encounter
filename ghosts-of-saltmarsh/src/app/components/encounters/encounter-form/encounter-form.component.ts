@@ -38,7 +38,7 @@ export class EncounterFormComponent implements OnInit {
     }
   }
 
-  addToEncounter(type: string) {
+  addToEncounter() {
     this.selectedMonsters.push(this.selectedMonster!)
     console.log(this.selectedMonsters)
     this.monsterService.setMonster('')
