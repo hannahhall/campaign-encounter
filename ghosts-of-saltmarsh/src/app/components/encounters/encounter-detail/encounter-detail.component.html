@@ -7,19 +7,28 @@
               </button>
             </p>    
         </div>
+        <div class="field is-grouped is-grouped-right" *ngIf="encounter.round">
+            <p class="control">
+              <button class="button is-success is-inverted" (click)="updateTurn(encounter)">
+                Next Turn
+              </button>
+            </p>    
+        </div>
     </app-hero>
     <div class="container is-fluid">
-        <div class="tile is-ancestor is-12">
-            <div class="tile is-parent">
-                <app-encounter-card 
-                    class="tile is-child is-3"
-                    *ngFor="let member of encounter.order; index as i"
+        <div class="columns is-multiline">
+            <ng-container *ngFor="let member of encounter.order; index as i">
+                <app-encounter-card
+                    class="column"
                     [member]="member"
                     [started]="encounter.round > 0"
                     [isTurn]="encounter.round && i === encounter.turn"
                     (updateHitPoints)="updateHitPoints($event, encounter.id)"
                 ></app-encounter-card>
-            </div>
+                <div class="monster-detail column is-full" *ngIf="encounter.round && member.is_monster && i === encounter.turn">
+                    <app-monster-detail [monsterIndex]="member.member.index"></app-monster-detail>
+                </div>
+            </ng-container>
         </div>
     </div>
 </ng-container>

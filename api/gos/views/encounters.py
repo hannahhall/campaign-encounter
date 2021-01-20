@@ -101,7 +101,7 @@ class EncounterView(viewsets.ViewSet):
         encounter = Encounter.objects.get(pk=pk)
         members_len = len(encounter.order)
 
-        if encounter.turn + 1 > members_len:
+        if encounter.turn + 1 >= members_len:
             encounter.round += 1
             encounter.turn = 0
         else:

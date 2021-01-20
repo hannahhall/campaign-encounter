@@ -30,4 +30,8 @@ export class EncounterDetailComponent implements OnInit {
     this.encounterService.updateHitPoints(id, event)
   }
 
+  updateTurn(encounter: Encounter) {
+    this.encounterService.updateTurn(encounter.id);
+  }
+
 }

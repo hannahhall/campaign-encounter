@@ -1,5 +1,5 @@
 import { MonsterService } from './../../../services/monster/monster.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Monster } from 'src/app/classes/monster/monster';
 import { Observable } from 'rxjs';
 
@@ -9,11 +9,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./monster-detail.component.scss']
 })
 export class MonsterDetailComponent implements OnInit {
+  @Input() monsterIndex: string = "";
   monster$ = new Observable<Monster>();
 
   constructor(private monsterService: MonsterService) { }
 
   ngOnInit(): void {
+    if (this.monsterIndex) {
+      this.monsterService.setMonster(this.monsterIndex)
+    }
     this.monster$ = this.monsterService.monster
   }
 

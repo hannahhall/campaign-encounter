@@ -66,4 +66,10 @@ export class EncounterService {
       this._encounter.next(res as Encounter);
     })
   }
+
+  updateTurn(encounterId: number) {
+    this.http.put(`gos/api/encounters/${encounterId}/update_turn/`, {}).subscribe((res) => {
+      this._encounter.next(res as Encounter);
+    })
+  }
 }

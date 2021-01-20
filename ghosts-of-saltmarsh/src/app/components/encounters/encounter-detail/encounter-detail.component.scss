@@ -8,3 +8,7 @@
 .tile.is-child {
     padding: 15px;
 }
+
+.tile.is-parent {
+    flex-wrap: wrap;
+}
