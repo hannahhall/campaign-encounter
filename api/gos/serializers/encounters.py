@@ -32,15 +32,21 @@ class OrderSerializer(serializers.BaseSerializer):
         """
         if hasattr(instance, 'monster'):
             return {
+                'id': instance.id,
                 'initiative': instance.initiative,
+                'current_hp': instance.current_hp,
+                'is_monster': True,
                 'member': {
                     'name': instance.monster.name,
-                    'index': instance.monster.index
+                    'index': instance.monster.index,
+                    'hit_points': instance.monster.hit_points
                 }
             }
         if hasattr(instance, 'player'):
             return {
+                'id': instance.id,
                 'initiative': instance.initiative,
+                'is_monster': False,
                 'member': {
                     'name': instance.player.name,
                 }

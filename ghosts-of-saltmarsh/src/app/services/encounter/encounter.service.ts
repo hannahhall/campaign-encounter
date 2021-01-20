@@ -48,11 +48,17 @@ export class EncounterService {
   }
 
   saveEncounter(encounter: any) {
-    console.log('yo')
     this.http.post('gos/api/encounters/', encounter).subscribe(
       (res) => {
         console.log(res)
       }
     )
+  }
+
+  saveInitiative(order: any, encounterId) {
+    this.http.post(`gos/api/encounters/${encounterId}/save_initiative/`, { order }).subscribe((res: Encounter) => {
+      console.log(res)
+      this._encounter.next(res)
+    })
   }
 }

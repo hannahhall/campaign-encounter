@@ -36,6 +36,6 @@ class Encounter(models.Model):
         encounter_players = EncounterPlayer.objects.filter(encounter__id=self.id)
         return sorted(
             chain(encounter_monsters, encounter_players),
-            key=lambda member: member.initiative,
+            key=lambda member: member.initiative if member.initiative else 0,
             reverse=True
         )

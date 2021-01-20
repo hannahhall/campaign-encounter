@@ -1,3 +1,18 @@
-<div>
-    
-</div>
+<ng-container *ngIf="encounter$ | async as encounter">
+    <app-hero [title]="encounter.name">
+        <div class="field is-grouped is-grouped-right" *ngIf="!encounter.round">
+            <p class="control">
+              <button class="button is-success is-inverted" (click)="saveInitiative(encounter)">
+                Save Initiative
+              </button>
+            </p>    
+        </div>
+    </app-hero>
+    <div class="container is-fluid">
+        <div class="tile is-ancestor is-12">
+            <div class="tile is-parent">
+                <app-encounter-card class="tile is-child is-3" *ngFor="let member of encounter.order" [member]="member" [started]="encounter.round > 0"></app-encounter-card>
+            </div>
+        </div>
+    </div>
+</ng-container>

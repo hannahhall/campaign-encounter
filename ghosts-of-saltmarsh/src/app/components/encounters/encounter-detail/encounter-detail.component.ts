@@ -16,9 +16,14 @@ export class EncounterDetailComponent implements OnInit {
   constructor(private encounterService: EncounterService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.encounter$ = this.encounterService.encounter;
     const id = this.route.snapshot.paramMap.get('id')!;
     this.encounterService.setEncounter(parseInt(id))
+    this.encounter$ = this.encounterService.encounter;
+  }
+
+  saveInitiative(encounter: any) {
+    console.log(encounter)
+    this.encounterService.saveInitiative(encounter.order, encounter.id)
   }
 
 }

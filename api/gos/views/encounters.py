@@ -1,12 +1,13 @@
 """
 Encounter View Class
 """
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
-from rest_framework import status
 
-from gos.models import Encounter, Player, Monster
+
+from gos.models import Encounter, Player, Monster, EncounterPlayer, EncounterMonster
 from gos.serializers import EncounterListSerializer, EncounterDetailSerializer
 
 class EncounterView(viewsets.ViewSet):
@@ -57,3 +58,29 @@ class EncounterView(viewsets.ViewSet):
             encounter.monsters.add(monster[0])
         return Response({}, status=status.HTTP_201_CREATED)
 
+    @action(detail=True, methods=['post'])
+    def save_initiative(self, request, pk=None):
+        """Save the monster and player initiative
+        Start the encounter by upping the round to 1
+
+        Returns:
+            Response: json serialized encounter
+        """
+        order = request.data.get('order')
+
+        for member in order:
+            if member['is_monster']:
+                encounter_monster = EncounterMonster.objects.get(pk=member['id'])
+                encounter_monster.initiative = member['initiative']
+                encounter_monster.current_hp = encounter_monster.monster.hit_points
+                encounter_monster.save()
+            else:
+                encounter_player = EncounterPlayer.objects.get(pk=member['id'])
+                encounter_player.initiative = member['initiative']
+                encounter_player.save()
+
+        encounter = Encounter.objects.get(pk=pk)
+        encounter.round = 1
+        encounter.save()
+        serializer = EncounterDetailSerializer(encounter)
+        return Response(serializer.data)
