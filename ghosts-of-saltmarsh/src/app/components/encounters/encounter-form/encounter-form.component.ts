@@ -1,3 +1,4 @@
+import { EncounterService } from './../../../services/encounter/encounter.service';
 import { MonsterService } from './../../../services/monster/monster.service';
 import { Component, OnInit } from '@angular/core';
 import { Monster } from 'src/app/classes/monster/monster';
@@ -15,8 +16,14 @@ export class EncounterFormComponent implements OnInit {
   selectedPlayers: string[] = [];
   selectedMonster: Monster | undefined;
   players: any;
+  name: string = '';
+  description: string = '';
 
-  constructor(private monsterService: MonsterService, private playerService: PlayerService) { }
+  constructor(
+    private monsterService: MonsterService,
+    private playerService: PlayerService,
+    private encounterService: EncounterService
+  ) { }
 
   ngOnInit(): void {
     this.monsterService.monsters.subscribe(monsters => this.monsters = monsters);
@@ -42,6 +49,16 @@ export class EncounterFormComponent implements OnInit {
     this.selectedMonsters.push(this.selectedMonster!)
     console.log(this.selectedMonsters)
     this.monsterService.setMonster('')
+  }
+
+  saveEncounter() {
+    const encounter = {
+      name: this.name,
+      description: this.description,
+      players: this.selectedPlayers,
+      monsters: this.selectedMonsters
+    }
+    this.encounterService.saveEncounter(encounter)
   }
 
 }

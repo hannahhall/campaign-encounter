@@ -14,3 +14,4 @@ class Monster(models.Model):
     """
     index = models.CharField(max_length=100, primary_key=True)
     name = models.CharField(max_length=100)
+    hit_points = models.IntegerField()

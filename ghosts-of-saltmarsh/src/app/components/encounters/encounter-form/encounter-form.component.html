@@ -1,7 +1,7 @@
 <app-hero [title]="'Create an Encounter'">
     <div class="field is-grouped is-grouped-right">
         <p class="control">
-          <button class="button is-success is-inverted">
+          <button class="button is-success is-inverted" (click)="saveEncounter()">
             Create Fight
           </button>
         </p>    
@@ -9,15 +9,15 @@
 </app-hero>
 <div class="container is-fluid">
     <div class="field">
-        <label class="label">Title</label>
+        <label class="label">Name</label>
         <div class="control">
-            <input class="input" type="text">
+            <input class="input" type="text" [(ngModel)]="name">
         </div>
     </div>
     <div class="field">
         <label class="label">Description</label>
         <div class="control">
-          <textarea class="textarea" ></textarea>
+          <textarea class="textarea" [(ngModel)]="description"></textarea>
         </div>
       </div>
     <h3>Add to the Encounter</h3>

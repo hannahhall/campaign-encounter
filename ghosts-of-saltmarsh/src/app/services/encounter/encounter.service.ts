@@ -46,4 +46,13 @@ export class EncounterService {
       }
     )
   }
+
+  saveEncounter(encounter: any) {
+    console.log('yo')
+    this.http.post('gos/api/encounters/', encounter).subscribe(
+      (res) => {
+        console.log(res)
+      }
+    )
+  }
 }
